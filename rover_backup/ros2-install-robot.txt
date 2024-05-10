@@ -1,0 +1,35 @@
+ros2 launch nav2_bringup navigation_launch.py
+ros2 launch slam_toolbox online_async_launch.py
+ros2 launch realsense2_camera rs_d400_and_t265_launch.py
+ros2 run depthimage_to_laserscan depthimage_to_laserscan_node depth:=/D400/depth/image_rect_raw depth_camera_info:=/D400/depth/camera_info
+
+ros2 run tf2_ros static_transform_publisher 0.1 0 0 0 0 0 map odom
+ros2 run tf2_ros static_transform_publisher 0 0 0.0 0 0 0 odom odom_frame
+ros2 run tf2_ros static_transform_publisher 0 0 0.05 0 0 0 T265_link D400_link
+ros2 run tf2_ros static_transform_publisher 0 0 0.05 0 0 0 T265_link camera1_link
+ros2 run tf2_ros static_transform_publisher 0 0 -0.2 0 0 0 T265_link base_link
+ros2 run tf2_ros static_transform_publisher 0 0 0.01 0 0 0 D400_depth_frame camera_depth_frame
+
+ros2 run tf2_tools view_frames
+ros2 run tf2_ros tf2_echo wheel_left_link map
+ros2 run tf2_ros tf2_monitor
+
+
+ros2 run robot_state_publisher robot_state_publisher ~/ros2_ws/src/robot/urdf/rover_robot.urdf
+
+ros2 run rqt_gui rqt_gui
+ros2 run rviz2 rviz2 -d /opt/ros/galactic/share/nav2_bringup/rviz/nav2_default_view.rviz
+ros2 run rviz2 rviz2 -d ~/ros2_ws/src/robot/launch/rover_robot.rviz
+
+ros2 run foxglove_bridge foxglove_bridge
+
+ORDERED RUNS:
+ros2 run robot_state_publisher robot_state_publisher ~/ros2_ws/src/robot/urdf/rover_robot.urdf
+ros2 run tf2_ros static_transform_publisher 0.1 0 0 0 0 0 map odom
+ros2 run tf2_ros static_transform_publisher 0.495 0 0.43 0 0 0 odom odom_frame
+ros2 launch realsense2_camera rs_d400_and_t265_launch.py
+ros2 run depthimage_to_laserscan depthimage_to_laserscan_node depth:=/D400/depth/image_rect_raw depth_camera_info:=/D400/depth/camera_info
+
+ros2 run rqt_gui rqt_gui
+ros2 run foxglove_bridge foxglove_bridge
+ros2 run rviz2 rviz2 -d ~/ros2_ws/src/robot/launch/rover_robot.rviz

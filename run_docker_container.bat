@@ -1,0 +1,1 @@
+docker run -it -p 666:22 -p 8765:8765 --name myrobot --user ros -v c:/project/ros/shopper/src:/src -e DISPLAY=docker.for.mac.host.internal:0 robot_image
