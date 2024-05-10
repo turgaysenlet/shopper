@@ -59,7 +59,7 @@ RUN echo "echo Sourcing the system-wide /etc/bash.bashrc" >> /etc/bash.bashrc
 
 RUN mkdir -p /home/ros/ros2_ws/src
 COPY entrypoint.sh /entrypoint.sh
-COPY src /home/ros/ros2_ws/src
+COPY rover_backup /home/ros/ros2_ws/src
 
 ENV QT_QUICK_BACKEND=software
 ENV LIBGL_ALWAYS_INDIRECT=1
