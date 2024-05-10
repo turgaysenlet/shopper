@@ -50,7 +50,7 @@ RUN apt-mark hold librealsense2-udev-rules
 RUN apt-mark hold librealsense2-utils
 RUN apt-mark hold librealsense2-net
 
-RUN apt-get remove python3-tornado
+RUN apt-get remove -y python3-tornado
 
 # Append the source command to .bashrc
 RUN echo "source /opt/ros/galactic/setup.bash" >> /.bashrc
@@ -59,7 +59,7 @@ RUN echo "echo Sourcing the system-wide /etc/bash.bashrc" >> /etc/bash.bashrc
 
 RUN mkdir -p /home/ros/ros2_ws/src
 COPY entrypoint.sh /entrypoint.sh
-COPY rover_backup /home/ros/ros2_ws/src
+COPY src /home/ros/ros2_ws/src
 
 ENV QT_QUICK_BACKEND=software
 ENV LIBGL_ALWAYS_INDIRECT=1
