@@ -15,7 +15,7 @@ ros2 run tf2_ros tf2_echo wheel_left_link map
 ros2 run tf2_ros tf2_monitor
 
 
-ros2 run robot_state_publisher robot_state_publisher ~/ros2_ws/src/robot/urdf/rover_robot.urdf
+ros2 run robot_state_publisher robot_state_publisher ~/ros2_ws/src/rover_robot/urdf/rover_robot.urdf
 
 ros2 run rqt_gui rqt_gui
 ros2 run rviz2 rviz2 -d /opt/ros/galactic/share/nav2_bringup/rviz/nav2_default_view.rviz
