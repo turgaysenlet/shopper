@@ -68,8 +68,9 @@ ENV LIBGL_ALWAYS_INDIRECT=1
 RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 RUN sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config
 
-# Expose SSH port
+# Expose SSH port, map to 666 on the localhost
 EXPOSE 22
+# Expose Foxglove websocket port, map to 8765 on the localhost
 EXPOSE 8765
 
 # Automatically executed startup script
