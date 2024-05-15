@@ -24,13 +24,15 @@ RUN add-apt-repository universe
 # USER root
 
 RUN apt-get update \
-  && apt-get install -y sublime-text sudo net-tools nano curl wget gnupg iputils-ping openssh-server x11-apps \
-    ros-galactic-foxglove-bridge ros-galactic-rosbridge-suite \    
-    git vim terminator curl synaptic openssh-server \
-    python3-colcon-common-extensions python3-rosdep \
-    ros-galactic-desktop ros-galactic-realsense2-camera ros-galactic-realsense2-camera-msgs ros-galactic-realsense2-description ros-galactic-librealsense2 ros-galactic-depthimage-to-laserscan ros-galactic-rviz2 ros-galactic-navigation2 ros-galactic-nav2-* ros-galactic-slam-toolbox ros-galactic-turtlebot3* ros-galactic-gazebo-dev ros-galactic-gazebo-ros2-control ros-galactic-gazebo-ros2-control-demos ros-galactic-gazebo-msgs ros-galactic-gazebo-plugins \
-    ros-galactic-rmw-cyclonedds-cpp \
-    lsb-release \
+  && apt-get install -y sublime-text sudo net-tools nano curl wget gnupg git vim  iputils-ping \
+    terminator curl synaptic x11-apps openssh-server lsb-release openssh-server \  
+    python3-pip python3-colcon-common-extensions python3-rosdep \
+    ros-galactic-desktop \
+    ros-galactic-rviz2 ros-galactic-navigation2 ros-galactic-nav2-* ros-galactic-slam-toolbox ros-galactic-turtlebot3* ros-galactic-gazebo-dev ros-galactic-gazebo-ros2-control ros-galactic-gazebo-ros2-control-demos ros-galactic-gazebo-msgs ros-galactic-gazebo-plugins \
+    ros-galactic-depthimage-to-laserscan \
+    ros-galactic-realsense2-camera ros-galactic-realsense2-camera-msgs ros-galactic-realsense2-description ros-galactic-librealsense2 \
+    ros-galactic-foxglove-bridge ros-galactic-rosbridge-suite \        
+    ros-galactic-rmw-cyclonedds-cpp \    
   && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME\
   && chmod 0440 /etc/sudoers.d/$USERNAME \
   && rm -rf /var/lib/apt/lists/*
@@ -59,7 +61,16 @@ RUN echo "echo Sourcing the system-wide /etc/bash.bashrc" >> /etc/bash.bashrc
 
 RUN mkdir -p /home/ros/ros2_ws/src
 COPY entrypoint.sh /entrypoint.sh
+RUN pip3 install tornado simplejpeg
+
+RUN chown ros:ros -R /home/ros/
+
+USER ros
 COPY src /home/ros/ros2_ws/src
+RUN cd /home/ros/ros2_ws/src
+RUN git clone https://github.com/dheera/rosboard.git
+
+USER root
 
 ENV QT_QUICK_BACKEND=software
 ENV LIBGL_ALWAYS_INDIRECT=1
@@ -72,6 +83,11 @@ RUN sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/
 EXPOSE 22
 # Expose Foxglove websocket port, map to 8765 on the localhost
 EXPOSE 8765
+# Expose rosbridge_server rosbridge_websocket_launch port in the localhost, map to 9090 on the localhost
+EXPOSE 9090
+# Expose rosboard port in the localhost, map to 8888 on the localhost
+# https://github.com/dheera/rosboard?tab=readme-ov-file
+EXPOSE 8888
 
 # Automatically executed startup script
 ENTRYPOINT [ "/bin/bash", "/entrypoint.sh" ]
