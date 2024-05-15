@@ -1,2 +1,2 @@
 #/!bin/bash
-docker image build -t robot_image .
+docker image build -t ros2-galactic-with-realsense .
