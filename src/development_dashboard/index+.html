@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Development Dashboard</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; font-src 'self' https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; script-src 'self' https://cdnjs.cloudflare.com https://code.getmdl.io; frame-src 'self' https://upcitemdb.com;">
+    <!-- Import Materialize CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Material Design Lite CSS -->
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <!-- Material Design Lite Icon Font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body>
+    <div class="container">
+        <div class="header center-align">Development Dashboard</div>
+        <div class="grid-container">
+            <div class="card dark-card" id="robot-status">
+                <div class="card-content">
+                    <span class="card-title">Robot Status</span>
+                    <div class="content" data-url="/proxy?url=http://localhost:8001/product/850251004087"></div>
+                </div>
+            </div>
+            <div class="card dark-card" id="robot-map">
+                <div class="card-content">
+                    <span class="card-title">Robot Map</span>
+                    <div class="content" data-url="/proxy?url=http://localhost:8001/product/850251004087"></div>
+                </div>
+            </div>
+            <div class="card dark-card" id="map">
+                <div class="card-content">
+                    <span class="card-title">Map</span>
+                    <div class="content" data-url="/proxy?url=http://localhost:8001/product/850251004087"></div>
+                </div>
+            </div>
+            <div class="card dark-card" id="person-follow">
+                <div class="card-content">
+                    <span class="card-title">Person Follow</span>
+                    <div class="content" data-url="/proxy?url=http://localhost:8001/product/850251004087"></div>
+                </div>
+            </div>
+            <div class="card dark-card" id="shopping-list">
+                <div class="card-content">
+                    <span class="card-title">Shopping List</span>
+                    <div class="content">
+                        <ul id="taskList" class="mdl-list"></ul>
+                        <button id="refreshButton" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">Refresh List</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card dark-card" id="product-lookup">
+                <div class="card-content">
+                    <span class="card-title">Product Lookup</span>
+                    <iframe id="productIframe" class="webview" src=""></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Import Materialize JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

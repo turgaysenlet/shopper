@@ -1,0 +1,111 @@
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #121212;
+    color: #FFFFFF;
+}
+
+.container {
+    width: 100%;
+    padding: 0 10px;
+}
+
+.header {
+    background-color: #1E1E1E;
+    padding: 20px;
+    font-size: 24px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 10px;
+    justify-content: center;
+}
+
+.card {
+    background-color: #1E1E1E !important;
+    color: #FFFFFF !important;
+    border: 1px solid #333333;
+    border-radius: 8px;
+    width: 400px;
+    box-sizing: border-box;
+}
+
+.card-title {
+    color: #BB86FC !important;
+}
+
+.content {
+    width: 100%;
+    border-radius: 4px;
+    overflow: auto;
+    background-color: #333333;
+    color: #FFFFFF;
+    padding: 10px;
+}
+
+.webview {
+    width: 100%;
+    height: 300px;
+    border: none;
+    border-radius: 4px;
+}
+
+.card-content {
+    padding: 20px;
+}
+
+.mdl-list__item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #444;
+    padding-bottom: 10px;
+}
+
+.mdl-checkbox__label {
+    color: #ffffff;
+}
+
+.mdl-button {
+    margin-top: 20px;
+    background-color: #BB86FC !important;
+    color: #ffffff !important;
+}
+
+.loading {
+    display: flex;
+    align-items: center;
+    color: #ffffff;
+}
+
+.loading-spinner {
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top: 4px solid #ffffff;
+    width: 24px;
+    height: 24px;
+    animation: spin 1s linear infinite;
+    margin-right: 10px;
+}
+
+.task-details {
+    margin-top: 10px;
+    font-size: 0.9em;
+    color: #ccc;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Additional styles for product lookup */
+.product-image {
+    width: 320px;
+}
